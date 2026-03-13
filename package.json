@@ -31,6 +31,7 @@
     "The branch name must match the following pattern": "feat/login-page"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
     "jsdom": "^28.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
