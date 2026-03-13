@@ -1,0 +1,30 @@
+.header {
+  position: sticky;
+  z-index: 40;
+  top: 0;
+  border-bottom: var(--border-default);
+  background: var(--color-bg);
+}
+
+.nav {
+  max-width: 128rem;
+  margin: 0 auto;
+  padding: 0 2.4rem;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  height: 6.4rem;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.item:not(:first-child) {
+  margin-left: 2.4rem;
+}
+.item:nth-child(2) {
+  margin-right: auto;
+}
