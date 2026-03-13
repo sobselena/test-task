@@ -6,6 +6,12 @@ export const BASE_HEADER_LINKS: LinkConfig[] = [
     link: Paths.ROOT,
     text: 'MiniCRM',
     key: 'Mini CRM',
+    isLogo: true,
+  },
+  {
+    link: Paths.ABOUT_US,
+    text: 'О нас',
+    key: 'about',
   },
   {
     link: Paths.USERS,
