@@ -1,30 +1,33 @@
-import { useSearchParams } from 'react-router';
 import { useGetAllUsersQuery } from '../../redux/api';
 import { TableCard } from './components/table-card';
 import { JobSelector } from './job-selector';
 import styles from './users-page.module.scss';
-import { USERS_PAGINATION } from '../../constants/pagination';
+
 import { Pagination } from '../../components/pagination';
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import { UserModal } from './user-modal/user-modal';
 import { useDispatch } from 'react-redux';
 import { deleteUser } from '../../redux/reducers';
 
 export const UsersPage = () => {
   const { data, isFetching } = useGetAllUsersQuery();
-  const [searchParams] = useSearchParams();
   const [openModal, setOpenModal] = useState(false);
-  const page = searchParams.get('page');
+  const [search, setSearch] = useState('');
 
-  const lastPage = (Number(page) || 1) * USERS_PAGINATION;
-
-  const users = data?.slice(lastPage - USERS_PAGINATION, lastPage);
+  const users = data?.filter(({ fullName }) =>
+    fullName.toLowerCase().includes(search.toLowerCase())
+  );
   console.log(users);
   const dispatch = useDispatch();
   function onAdd() {
     dispatch(deleteUser());
     setOpenModal(true);
   }
+
+  function onSearch(e: ChangeEvent<HTMLInputElement>) {
+    setSearch(e.target.value);
+  }
+
   return (
     <main className={styles.page}>
       <header>
@@ -40,8 +43,10 @@ export const UsersPage = () => {
           </span>
 
           <input
+            onChange={onSearch}
             type="text"
-            placeholder="Поиск по имени или логину..."
+            value={search}
+            placeholder="Поиск по имени..."
             className={styles.searchInput}
           />
         </div>
@@ -58,7 +63,7 @@ export const UsersPage = () => {
 
       <TableCard data={users} isFetching={isFetching} openModal={() => setOpenModal(true)} />
 
-      <Pagination total={data?.length} />
+      <Pagination total={users?.length} />
 
       <UserModal isOpen={openModal} onClose={() => setOpenModal(false)} />
     </main>
