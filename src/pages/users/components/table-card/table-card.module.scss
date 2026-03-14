@@ -1,0 +1,107 @@
+.tableCard {
+  overflow: hidden;
+
+  border: var(--border-default);
+  border-radius: 2rem;
+
+  background: var(--color-bg);
+  box-shadow: 0 0.4rem 0.6rem rgb(0 0 0 / 0.02);
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  padding: 1.6rem;
+  text-align: left;
+}
+
+.tableHead {
+  border-bottom: var(--border-default);
+  background: #f8fafc;
+}
+
+.tableHead th {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.row {
+  border-bottom: var(--border-default);
+  transition: background 0.2s;
+}
+
+.row:hover {
+  background: #f1f5f9;
+}
+
+.cell {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.checkboxCell {
+  width: 5rem;
+}
+
+.actionsCell {
+  gap: 0.4rem;
+  justify-content: flex-end;
+}
+
+.userName {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.userMeta {
+  font-size: 1.3rem;
+  color: var(--color-text-secondary);
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.smallIcon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.iconButton {
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3.2rem;
+  height: 3.2rem;
+  border: none;
+  border-radius: 0.8rem;
+
+  color: var(--color-text-secondary);
+
+  background: transparent;
+
+  transition: var(--transition-default);
+}
+
+.iconButton:hover {
+  color: var(--color-primary);
+}
+
+.checkbox {
+  cursor: pointer;
+  width: 1.6rem;
+  height: 1.6rem;
+}
