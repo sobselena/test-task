@@ -5,10 +5,13 @@ import { JobSelector } from './job-selector';
 import styles from './users-page.module.scss';
 import { USERS_PAGINATION } from '../../constants/pagination';
 import { Pagination } from '../../components/pagination';
+import { useState } from 'react';
+import { UserModal } from './user-modal/user-modal';
 
 export const UsersPage = () => {
   const { data, isFetching } = useGetAllUsersQuery();
   const [searchParams] = useSearchParams();
+  const [openModal, setOpenModal] = useState(false);
   const page = searchParams.get('page');
 
   const lastPage = (Number(page) || 1) * USERS_PAGINATION;
@@ -38,7 +41,7 @@ export const UsersPage = () => {
 
         <JobSelector data={data} />
 
-        <button className={styles.addButton}>
+        <button className={styles.addButton} onClick={() => setOpenModal(true)}>
           <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path d="M12 4v16m8-8H4" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
@@ -49,6 +52,8 @@ export const UsersPage = () => {
       <TableCard data={users} isFetching={isFetching} />
 
       <Pagination total={data?.length} />
+
+      <UserModal isOpen={openModal} onClose={() => setOpenModal(false)} />
     </main>
   );
 };
