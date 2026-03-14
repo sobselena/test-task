@@ -4,41 +4,6 @@
   gap: 1.6rem;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.field label {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-}
-
-.field input {
-  padding: 1.2rem;
-  border: var(--border-default);
-  border-radius: 0.8rem;
-
-  font-size: 1.4rem;
-  color: var(--color-text);
-
-  background: var(--color-bg);
-  outline: none;
-
-  transition: var(--transition-default);
-}
-
-.field input::placeholder {
-  color: var(--color-text-secondary);
-}
-
-.field input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 0.2rem rgb(99 102 241 / 0.15);
-}
-
 .actions {
   display: flex;
   gap: 1rem;
