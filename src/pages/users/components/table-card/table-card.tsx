@@ -59,7 +59,7 @@ export const TableCard = ({ data, isFetching, openModal }: Props) => {
                   type="checkbox"
                   className={styles.checkbox}
                   onChange={onCheckboxClick}
-                  checked={usersIds.length === data?.length}
+                  checked={usersIds.length === data?.length && data.length > 0}
                 />
               </div>
             </th>

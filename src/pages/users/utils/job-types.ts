@@ -1,6 +1,6 @@
 import type { User } from '../../../types/user';
 
-export const getJobTitle = (data: User[]) => {
+export const getJobTitles = (data: User[]) => {
   const result = new Set<string>();
 
   for (const { jobType } of data) {

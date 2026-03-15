@@ -1,10 +1,10 @@
-import { useEffect, useMemo, type ChangeEvent } from 'react';
+import { useMemo, type ChangeEvent } from 'react';
 import type { User } from '../../../../types/user';
-import { getJobTitle } from '../../utils/job-types';
+import { getJobTitles } from '../../utils/job-types';
 
 import styles from './job-selector.module.scss';
 import { useDispatch } from 'react-redux';
-import { setAllTypes, setJobType } from '../../../../redux/reducers';
+import { setJobType } from '../../../../redux/reducers';
 import { useJobTypeSelector } from '../../../../redux/selectors';
 
 type Props = {
@@ -14,17 +14,10 @@ type Props = {
 export const JobSelector = ({ data }: Props) => {
   const dispatch = useDispatch();
   const { jobType } = useJobTypeSelector();
-  console.log(jobType);
   const jobTypeOptions = useMemo(() => {
     if (!data) return [];
-    return [...getJobTitle(data)];
+    return [...getJobTitles(data)];
   }, [data]);
-
-  useEffect(() => {
-    if (jobTypeOptions.length > 0) {
-      dispatch(setAllTypes({ allTypes: jobTypeOptions }));
-    }
-  }, [dispatch, jobTypeOptions]);
 
   const onSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     const optionValue = e.target.value;
