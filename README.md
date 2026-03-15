@@ -9,8 +9,8 @@
 
 ------------------------------------------------------------------------
 # Deploy 
-[Deploy](https://sobselena-mini-crm.netlify.app)
-
+[Vercel](https://kaspersky-test-task.vercel.app/about-us)
+[Netlify](https://sobselena-mini-crm.netlify.app)
 ------------------------------------------------------------------------
 # 🚀 Запуск проекта
 
