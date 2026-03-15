@@ -1,12 +1,12 @@
-import { Modal } from '../../../components/modal';
+import { Modal } from '../../../../components/modal';
 import styles from './user-modal.module.scss';
 import { useForm } from 'react-hook-form';
 import { userSchema } from './user.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormRow } from '../form-row';
-import { useCreateUserMutation, useEditUserMutation } from '../../../redux/api';
-import type { User } from '../../../types/user';
-import { useUserSelector } from '../../../redux/selectors';
+import { useCreateUserMutation, useEditUserMutation } from '../../../../redux/api';
+import type { User } from '../../../../types/user';
+import { useUserSelector } from '../../../../redux/selectors';
 import { useEffect } from 'react';
 type Props = {
   isOpen: boolean;
@@ -41,7 +41,6 @@ export const UserModal = ({ isOpen, onClose, title = 'Сотрудник' }: Pro
     });
   }, [userData, reset]);
 
-  console.log(userData);
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>

@@ -1,15 +1,16 @@
 import { useGetAllUsersQuery } from '../../redux/api';
 import { TableCard } from './components/table-card';
-import { JobSelector } from './job-selector';
+import { JobSelector } from './components/job-selector';
 import styles from './users-page.module.scss';
-
 import { Pagination } from '../../components/pagination';
 import { useState, type ChangeEvent } from 'react';
-import { UserModal } from './user-modal/user-modal';
+import { UserModal } from './components/user-modal/user-modal';
 import { useDispatch } from 'react-redux';
 import { deleteUser } from '../../redux/reducers';
 import { useSearchParams } from 'react-router';
 import { USERS_PAGINATION } from '../../constants/pagination';
+import { useJobTypeSelector } from '../../redux/selectors';
+import { DeletePanel } from './components/delete-panel';
 
 export const UsersPage = () => {
   const { data, isFetching } = useGetAllUsersQuery();
@@ -17,7 +18,16 @@ export const UsersPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [search, setSearch] = useState('');
 
-  const users = data?.filter(({ fullName }) =>
+  const { jobType } = useJobTypeSelector();
+  console.log(jobType);
+  const sameType =
+    jobType === 'all'
+      ? data
+      : data?.filter((userData) => {
+          console.log(userData.jobType, jobType);
+          return userData.jobType.toLowerCase() === jobType;
+        });
+  const users = sameType?.filter(({ fullName }) =>
     fullName.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -29,7 +39,6 @@ export const UsersPage = () => {
 
   const paginatedUsers = users?.slice(start, end);
 
-  console.log(users);
   const dispatch = useDispatch();
   function onAdd() {
     dispatch(deleteUser());
@@ -73,6 +82,8 @@ export const UsersPage = () => {
           Добавить
         </button>
       </div>
+
+      <DeletePanel />
 
       <TableCard
         data={paginatedUsers}

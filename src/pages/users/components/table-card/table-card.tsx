@@ -5,7 +5,8 @@ import styles from './table-card.module.scss';
 import { AppLoader } from '../../../../components/app-loader';
 import { useDeleteUserMutation } from '../../../../redux/api';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../../../redux/reducers';
+import { setUser, toggle } from '../../../../redux/reducers';
+import { useSelectedSelector } from '../../../../redux/selectors/selected-selector';
 
 type Props = {
   data: User[] | undefined;
@@ -25,7 +26,7 @@ export const TableCard = ({ data, isFetching, openModal }: Props) => {
     dispatch(setUser(userData));
     openModal();
   };
-
+  const { usersIds } = useSelectedSelector();
   return (
     <div className={styles.tableCard}>
       <table className={styles.table}>
@@ -69,7 +70,12 @@ export const TableCard = ({ data, isFetching, openModal }: Props) => {
             <tr className={styles.row} key={userData.id}>
               <td className={styles.checkboxCell}>
                 <div className={styles.cell}>
-                  <input type="checkbox" className={styles.checkbox} />
+                  <input
+                    type="checkbox"
+                    className={styles.checkbox}
+                    checked={userData.id ? usersIds.includes(userData.id) : false}
+                    onChange={() => userData.id && dispatch(toggle({ id: userData.id }))}
+                  />
                 </div>
               </td>
 
@@ -98,11 +104,8 @@ export const TableCard = ({ data, isFetching, openModal }: Props) => {
               </td>
 
               <td>
-                <div
-                  className={`${styles.cell} ${styles.actionsCell}`}
-                  onClick={() => onEdit(userData)}
-                >
-                  <button className={styles.iconButton}>
+                <div className={`${styles.cell} ${styles.actionsCell}`}>
+                  <button className={styles.iconButton} onClick={() => onEdit(userData)}>
                     <svg
                       className={styles.smallIcon}
                       fill="none"
