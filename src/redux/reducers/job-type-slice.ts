@@ -5,7 +5,7 @@ type JobTypeState = {
   allTypes: string[];
 };
 const initialState: JobTypeState = {
-  jobType: 'all',
+  jobType: 'All',
   allTypes: [],
 };
 const jobTypeSlice = createSlice({
