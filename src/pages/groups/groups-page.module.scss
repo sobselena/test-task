@@ -27,9 +27,8 @@
 
 .card {
   padding: 2.4rem;
-
-  border-radius: 1.6rem;
   border: var(--border-default);
+  border-radius: 1.6rem;
 
   background: var(--color-bg);
 
@@ -47,14 +46,12 @@
 
   width: 4.8rem;
   height: 4.8rem;
-
+  margin-bottom: 1.6rem;
   border-radius: 1.2rem;
 
-  margin-bottom: 1.6rem;
+  color: var(--color-primary);
 
   background: #eef2ff;
-
-  color: var(--color-primary);
 }
 
 .icon svg {
@@ -63,22 +60,20 @@
 }
 
 .cardTitle {
+  margin-bottom: 1.6rem;
   font-size: 2rem;
   font-weight: 700;
-
-  margin-bottom: 1.6rem;
-
   color: var(--color-text);
 }
 
 .link {
+  cursor: pointer;
+
+  border: none;
+
   font-size: 1.4rem;
   font-weight: 600;
-
   color: var(--color-primary);
 
   background: none;
-  border: none;
-
-  cursor: pointer;
 }
