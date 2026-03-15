@@ -1,7 +1,12 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+type JobTypeState = {
+  jobType: string;
+  allTypes: string[];
+};
+const initialState: JobTypeState = {
   jobType: 'all',
+  allTypes: [],
 };
 const jobTypeSlice = createSlice({
   name: 'jobType',
@@ -10,7 +15,10 @@ const jobTypeSlice = createSlice({
     setJobType(state, { payload }: PayloadAction<{ jobType: string }>) {
       state.jobType = payload.jobType;
     },
+    setAllTypes(state, { payload }: PayloadAction<{ allTypes: string[] }>) {
+      state.allTypes = [...payload.allTypes];
+    },
   },
 });
-export const { setJobType } = jobTypeSlice.actions;
+export const { setJobType, setAllTypes } = jobTypeSlice.actions;
 export default jobTypeSlice.reducer;

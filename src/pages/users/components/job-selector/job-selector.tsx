@@ -1,10 +1,11 @@
-import type { ChangeEvent } from 'react';
+import { useEffect, useMemo, type ChangeEvent } from 'react';
 import type { User } from '../../../../types/user';
 import { getJobTitle } from '../../utils/job-types';
 
 import styles from './job-selector.module.scss';
 import { useDispatch } from 'react-redux';
-import { setJobType } from '../../../../redux/reducers';
+import { setAllTypes, setJobType } from '../../../../redux/reducers';
+import { useJobTypeSelector } from '../../../../redux/selectors';
 
 type Props = {
   data: User[] | undefined;
@@ -12,19 +13,33 @@ type Props = {
 
 export const JobSelector = ({ data }: Props) => {
   const dispatch = useDispatch();
-  function onSelect(e: ChangeEvent<HTMLSelectElement>) {
+  const { jobType } = useJobTypeSelector();
+  console.log(jobType);
+  const jobTypeOptions = useMemo(() => {
+    if (!data) return [];
+    return [...getJobTitle(data)];
+  }, [data]);
+
+  useEffect(() => {
+    if (jobTypeOptions.length > 0) {
+      dispatch(setAllTypes({ allTypes: jobTypeOptions }));
+    }
+  }, [dispatch, jobTypeOptions]);
+
+  const onSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     const optionValue = e.target.value;
     dispatch(setJobType({ jobType: optionValue }));
-  }
+  };
+
   return (
-    <select className={styles.filter} onChange={onSelect}>
-      <option value="all">All</option>
-      {data &&
-        getJobTitle(data).map((option) => (
-          <option value={option.toLowerCase()} key={option}>
-            {`${option[0].toUpperCase()}${option.slice(1).toLowerCase()}`}
-          </option>
-        ))}
+    <select className={styles.filter} onChange={onSelect} value={jobType}>
+      <option value="All">All</option>
+
+      {jobTypeOptions.map((option) => (
+        <option value={option} key={option}>
+          {option[0].toUpperCase() + option.slice(1).toLowerCase()}
+        </option>
+      ))}
     </select>
   );
 };
