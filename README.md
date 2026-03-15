@@ -1,73 +1,197 @@
-# React + TypeScript + Vite
+# MiniCRM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Небольшое приложение для управления пользователями и их группами,
+разработанное на React.
 
-Currently, two official plugins are available:
+Приложение загружает данные пользователей с сервера, позволяет
+просматривать, добавлять, изменять, удалять и сортировать.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+------------------------------------------------------------------------
+# Deploy 
+[Deploy](https://sobselena-mini-crm.netlify.app)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+------------------------------------------------------------------------
+# 🚀 Запуск проекта
 
-## Expanding the ESLint configuration
+### 1. Клонировать репозиторий
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+``` bash
+git clone https://github.com/sobselena/test-task.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Перейти в папку проекта
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+``` bash
+cd test-task
 ```
+
+### 3. Установить зависимости
+
+``` bash
+npm install
+```
+
+### 4. Запустить проект
+
+``` bash
+npm run dev
+```
+
+После запуска приложение будет доступно по адресу:
+
+    http://localhost:5173
+
+------------------------------------------------------------------------
+
+# 📌 Используемые технологии
+
+-   React
+-   Redux Toolkit
+-   React Router
+-   TypeScript
+-   SCSS Modules
+
+------------------------------------------------------------------------
+
+# 📂 Структура приложения
+
+Приложение состоит из трех основных страниц (routes):
+
+## 1. About Us Page
+
+Страница приветствия пользователя.
+
+Содержит краткую информацию о приложении и служит точкой входа.
+
+------------------------------------------------------------------------
+
+## 2. Users Page
+
+Страница со списком пользователей.
+
+Функциональность:
+
+-   отображение пользователей в виде таблицы
+-   поиск пользователей
+-   сортировка пользователей
+-   пагинация
+-   добавление пользователя
+-   удаление пользователя
+
+Данные пользователей загружаются с mockapi.io
+
+------------------------------------------------------------------------
+
+## 3. Groups Page
+
+Страница со списком всех групп пользователей.
+
+Каждая группа отображается в виде карточки.
+
+При нажатии на карточку пользователь перенаправляется на страницу Users,
+где автоматически применяется фильтр по выбранной группе.
+
+------------------------------------------------------------------------
+
+# 👥 Работа с группами
+
+Каждый пользователь может относиться к определенной группе, например:
+
+-   Руководство
+-   Бухгалтерия
+-   Отдел кадров
+-   IT
+-   Маркетинг
+
+Также возможны пользователи без группы.
+
+Список групп формируется динамически на основе данных пользователей.
+
+------------------------------------------------------------------------
+
+# 🎨 Проектирование UI
+
+## Users Page (без использования LLM)
+
+Страница со списком пользователей была разработана вручную, без
+использования LLM.
+
+Целью было продемонстрировать:
+
+-   самостоятельное проектирование интерфейса
+-   структуру таблицы
+-   удобство взаимодействия пользователя
+-   организацию компонентов
+
+Основные элементы интерфейса:
+
+-   таблица пользователей
+-   строка поиска
+-   фильтр по должности
+-   кнопка добавления пользователя
+-   модальное окно для создания пользователя
+-   пагинация
+
+------------------------------------------------------------------------
+
+## Groups Page (с использованием LLM)
+
+Страница групп пользователей была создана с использованием LLM.
+
+LLM использовалась для:
+
+-   генерации структуры UI
+-   генерации карточек групп
+-   базовой стилизации интерфейса
+
+После генерации код был адаптирован и интегрирован в структуру проекта.
+
+------------------------------------------------------------------------
+
+# 🧠 Выводы по проектированию UI
+
+## Ручное проектирование
+
+Плюсы:
+
+-   полный контроль над архитектурой
+-   оптимальная структура компонентов
+-   возможность лучше продумать UX
+
+Минусы:
+
+-   занимает больше времени
+-   требует большего количества решений на этапе разработки
+
+------------------------------------------------------------------------
+
+## Проектирование с использованием LLM
+
+Плюсы:
+
+-   быстрое создание базового UI
+-   ускорение прототипирования
+-   генерация идей для структуры интерфейса
+
+Минусы:
+
+-   сгенерированный код часто требует доработки
+-   возможна избыточность или неоптимальная структура
+
+------------------------------------------------------------------------
+
+# 📊 Итог
+
+В рамках задания было реализовано:
+
+-   загрузка данных с сервера
+-   таблица пользователей
+-   сортировка и поиск
+-   добавление и удаление пользователей
+-   фильтрация по группам
+-   страница групп пользователей
+-   маршрутизация между страницами
+
+Приложение демонстрирует работу с данными, управление состоянием и
+проектирование интерфейса на React.
