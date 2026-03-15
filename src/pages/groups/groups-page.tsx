@@ -1,29 +1,38 @@
 import { useNavigate } from 'react-router';
-import { useJobTypeSelector } from '../../redux/selectors';
+
 import styles from './groups-page.module.scss';
 import { Paths } from '../../constants';
 import { useDispatch } from 'react-redux';
 import { setJobType } from '../../redux/reducers';
+import { useGetAllUsersQuery } from '../../redux/api';
+import { getJobTitles } from '../users/utils/job-types';
+import { AppLoader } from '../../components/app-loader';
 
 export const GroupsPage = () => {
-  const jobTypes = useJobTypeSelector();
+  const { data, isLoading } = useGetAllUsersQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   async function onWatch(groupName: string) {
     dispatch(setJobType({ jobType: groupName }));
     await navigate(Paths.USERS);
   }
 
+  if (isLoading) {
+    return <AppLoader />;
+  }
+
+  const jobTitles = data ? getJobTitles(data) : [];
+
   return (
     <section className={styles.page}>
       <header className={styles.header}>
         <h1 className={styles.title}>Группы пользователей</h1>
-
         <p className={styles.subtitle}>Управление департаментами и распределение прав доступа.</p>
       </header>
 
       <div className={styles.grid}>
-        {jobTypes.allTypes.map((groupName) => (
+        {jobTitles.map((groupName) => (
           <div key={groupName} className={styles.card}>
             <div className={styles.icon}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -33,9 +42,9 @@ export const GroupsPage = () => {
               </svg>
             </div>
 
-            <h3
-              className={styles.cardTitle}
-            >{`${groupName.at(0)?.toUpperCase()}${groupName.slice(1).toLowerCase()}`}</h3>
+            <h3 className={styles.cardTitle}>
+              {groupName.charAt(0).toUpperCase() + groupName.slice(1).toLowerCase()}
+            </h3>
 
             <button className={styles.link} onClick={() => onWatch(groupName)}>
               Посмотреть →

@@ -19,7 +19,6 @@ export const UsersPage = () => {
   const [search, setSearch] = useState('');
 
   const { jobType } = useJobTypeSelector();
-  console.log(jobType);
   const sameType =
     jobType === 'All' ? data : data?.filter((userData) => userData.jobType === jobType);
   const users = sameType?.filter(({ fullName }) =>

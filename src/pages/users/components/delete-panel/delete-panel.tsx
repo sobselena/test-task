@@ -15,7 +15,9 @@ export const DeletePanel = () => {
     dispatch(deleteAllIds());
   }
   async function onDelete() {
-    await Promise.all([...usersIds].map((id) => deleteUser(id).unwrap()));
+    for (const id of usersIds) {
+      await deleteUser(id).unwrap();
+    }
     dispatch(deleteAllIds());
   }
 
