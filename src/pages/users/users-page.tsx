@@ -21,12 +21,7 @@ export const UsersPage = () => {
   const { jobType } = useJobTypeSelector();
   console.log(jobType);
   const sameType =
-    jobType === 'all'
-      ? data
-      : data?.filter((userData) => {
-          console.log(userData.jobType, jobType);
-          return userData.jobType.toLowerCase() === jobType;
-        });
+    jobType === 'All' ? data : data?.filter((userData) => userData.jobType === jobType);
   const users = sameType?.filter(({ fullName }) =>
     fullName.toLowerCase().includes(search.toLowerCase())
   );
