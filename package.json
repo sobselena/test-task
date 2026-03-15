@@ -32,12 +32,19 @@
     "The branch name must match the following pattern": "feat/login-page"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@reduxjs/toolkit": "^2.11.2",
     "classnames": "^2.5.1",
     "jsdom": "^28.1.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-hook-form": "^7.71.2",
+    "react-hot-toast": "^2.6.0",
+    "react-loader-spinner": "^8.0.2",
+    "react-redux": "^9.2.0",
     "react-router": "^7.13.1",
-    "react-router-dom": "^7.13.1"
+    "react-router-dom": "^7.13.1",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",

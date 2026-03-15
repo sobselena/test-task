@@ -1,0 +1,44 @@
+.modal {
+  position: fixed;
+  z-index: 101;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 48rem;
+  border: var(--border-default);
+  border-radius: 1.6rem;
+
+  background: var(--color-bg);
+  box-shadow: 0 2rem 4rem rgb(0 0 0 / 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 2rem;
+  border-bottom: var(--border-default);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.close {
+  cursor: pointer;
+
+  border: none;
+
+  font-size: 2rem;
+  color: var(--color-text-secondary);
+
+  background: none;
+}
+
+.content {
+  padding: 2rem;
+}

@@ -1,0 +1,90 @@
+.page {
+  flex-grow: 1;
+  max-width: 128rem;
+  margin: 0 auto;
+  padding: 4rem 2.4rem;
+}
+
+.pageTitle {
+  margin-bottom: 2.4rem;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.toolbar {
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+
+  margin-bottom: 1.2rem;
+  padding: 1.6rem;
+  border: var(--border-default);
+  border-radius: 1.6rem;
+
+  background: var(--color-bg);
+  box-shadow: 0 0.4rem 0.6rem rgb(0 0 0 / 0.02);
+}
+
+.search {
+  position: relative;
+  flex-grow: 1;
+}
+
+.icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 55%;
+  left: 1.2rem;
+  transform: translateY(-50%);
+
+  color: var(--color-text-secondary);
+}
+
+.searchInput {
+  width: 100%;
+  padding: 1.2rem 1.2rem 1.2rem 4rem;
+  border: var(--border-default);
+  border-radius: 1.2rem;
+
+  font-size: 1.4rem;
+
+  background: #f8fafc;
+  outline: none;
+
+  transition: var(--transition-default);
+}
+
+.searchInput:focus {
+  border-color: var(--color-primary);
+  background: #fff;
+}
+
+.addButton {
+  cursor: pointer;
+
+  display: inline-flex;
+  gap: 0.8rem;
+  align-items: center;
+
+  padding: 1.2rem 2.4rem;
+  border: none;
+  border-radius: 1.2rem;
+
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+
+  background: var(--color-primary);
+  box-shadow: var(--shadow-button);
+
+  transition: var(--transition-default);
+}
+
+.addButton:hover {
+  opacity: 0.75;
+}
